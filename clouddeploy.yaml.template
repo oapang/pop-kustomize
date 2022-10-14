@@ -1,0 +1,64 @@
+apiVersion: deploy.cloud.google.com/v1
+kind: DeliveryPipeline
+metadata:
+  name: pop-stats-pipeline
+description: pop-stats application delivery pipeline
+serialPipeline:
+ stages:
+ - targetId: test
+ - targetId: staging
+   profiles:
+   - staging
+ - targetId: prod
+   profiles:
+   - prod
+
+---
+
+apiVersion: deploy.cloud.google.com/v1
+kind: Target
+metadata:
+  name: test
+description: test cluster
+anthosCluster:
+  membership: projects/<PROJECT_CICD>/locations/global/memberships/<GKE_TEST>
+executionConfigs:
+- usages:
+  - RENDER
+  - DEPLOY
+  workerPool: projects/<PROJECT_CICD>/locations/<REGION>/workerPools/my-private-pool
+  serviceAccount: <SA_CLOUDDEPLOY>@<PROJECT_CICD>.iam.gserviceaccount.com
+  
+---
+
+apiVersion: deploy.cloud.google.com/v1
+kind: Target
+metadata:
+  name: staging
+description: staging cluster
+anthosCluster:
+  membership: projects/<PROJECT_CICD>/locations/global/memberships/<GKE_STAGE>
+executionConfigs:
+- usages:
+  - RENDER
+  - DEPLOY
+  workerPool: projects/<PROJECT_CICD>/locations/<REGION>/workerPools/my-private-pool
+  serviceAccount: <SA_CLOUDDEPLOY>@<PROJECT_CICD>.iam.gserviceaccount.com
+
+
+---
+
+apiVersion: deploy.cloud.google.com/v1
+kind: Target
+metadata:
+  name: prod
+description: prod cluster
+requireApproval: true
+anthosCluster:
+  membership: projects/<PROJECT_CICD>/locations/global/memberships/<GKE_PROD>
+executionConfigs:
+- usages:
+  - RENDER
+  - DEPLOY
+  workerPool: projects/<PROJECT_CICD>/locations/<REGION>/workerPools/my-private-pool
+  serviceAccount: <SA_CLOUDDEPLOY>@<PROJECT_CICD>.iam.gserviceaccount.com

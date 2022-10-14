@@ -1,0 +1,31 @@
+# Overview: build and create a release via Google Cloud Deploy for GKE
+# NOTE: currently requires SCM triggering due to dependency on the COMMIT_SHA variable
+steps:
+  # Build and tag using commit sha
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '.', '-t', '<REGION>-docker.pkg.dev/<PROJECT>/pop-stats/pop-stats:${COMMIT_SHA}', '-f', 'Dockerfile']
+    dir: 'app'
+  # Run api tests
+  - name: '<REGION>-docker.pkg.dev/<PROJECT>/pop-stats/pop-stats:${COMMIT_SHA}'
+    entrypoint: python
+    args: ["api_tests.py"]
+    dir: 'app'
+  # Push the container image to Artifact Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', '<REGION>-docker.pkg.dev/<PROJECT>/pop-stats/pop-stats:${COMMIT_SHA}']
+  # Create release in Google Cloud Deploy
+  - name: gcr.io/google.com/cloudsdktool/cloud-sdk
+    entrypoint: gcloud
+    args: 
+      [
+        "deploy", "releases", "create", "rel-${SHORT_SHA}",
+        "--delivery-pipeline", "pop-stats-pipeline",
+        "--region", "<REGION>",
+        "--annotations", "commitId=${REVISION_ID}",
+        "--images", "pop-stats=<REGION>-docker.pkg.dev/<PROJECT>/pop-stats/pop-stats:${COMMIT_SHA}"
+      ]
+images:
+- <REGION>-docker.pkg.dev/<PROJECT>/pop-stats/pop-stats:${COMMIT_SHA}
+options:
+  requestedVerifyOption: VERIFIED
+logsBucket: gs://<GCS_LOGS>

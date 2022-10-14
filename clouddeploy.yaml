@@ -21,7 +21,7 @@ metadata:
   name: test
 description: test cluster
 anthosCluster:
-  membership: projects/kwpark-deloitte-gke-e968977c/locations/global/memberships/my-test-cluster
+  membership: projects/kwpark-deloitte-cicd-e968977c/locations/global/memberships/my-test-cluster
 executionConfigs:
 - usages:
   - RENDER
@@ -37,7 +37,7 @@ metadata:
   name: staging
 description: staging cluster
 anthosCluster:
-  membership: projects/kwpark-deloitte-gke-e968977c/locations/global/memberships/stage-cluster
+  membership: projects/kwpark-deloitte-cicd-e968977c/locations/global/memberships/stage-cluster
 executionConfigs:
 - usages:
   - RENDER
@@ -55,7 +55,7 @@ metadata:
 description: prod cluster
 requireApproval: true
 anthosCluster:
-  membership: projects/kwpark-deloitte-gke-e968977c/locations/global/memberships/prod-cluster
+  membership: projects/kwpark-deloitte-cicd-e968977c/locations/global/memberships/prod-cluster
 executionConfigs:
 - usages:
   - RENDER
