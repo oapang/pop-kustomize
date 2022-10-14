@@ -1,5 +1,5 @@
 steps:
-  # Build and tag using commit sha
+  # Build and tag using commit sha 
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '.', '-t', 'us-east4-docker.pkg.dev/us-gcp-ame-its-842f4-npd-1/pop-stats/pop-stats:${COMMIT_SHA}', '-f', 'Dockerfile']
     dir: 'app'
