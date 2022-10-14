@@ -37,13 +37,13 @@ metadata:
   name: staging
 description: staging cluster
 anthosCluster:
-  membership: projects/kwpark-deloitte-cicd-e968977c/locations/global/memberships/stage-cluster
+  membership: projects/us-gcp-ame-its-842f4-npd-1/locations/global/memberships/m2c-process
 executionConfigs:
 - usages:
   - RENDER
   - DEPLOY
-  workerPool: projects/kwpark-deloitte-cicd-e968977c/locations/us-central1/workerPools/my-private-pool
-  serviceAccount: my-clouddeploy-sa@kwpark-deloitte-cicd-e968977c.iam.gserviceaccount.com
+  workerPool: projects/us-gcp-ame-its-842f4-npd-1/locations/us-east4/workerPools/my-private-pool
+  serviceAccount: cloud-deploy-ci-cd-pipeline@us-gcp-ame-its-842f4-npd-1.iam.gserviceaccount.com
 
 
 ---
@@ -55,10 +55,10 @@ metadata:
 description: prod cluster
 requireApproval: true
 anthosCluster:
-  membership: projects/kwpark-deloitte-cicd-e968977c/locations/global/memberships/prod-cluster
+  membership: projects/us-gcp-ame-its-842f4-npd-1/locations/global/memberships/m2c-process
 executionConfigs:
 - usages:
   - RENDER
   - DEPLOY
-  workerPool: projects/kwpark-deloitte-cicd-e968977c/locations/us-central1/workerPools/my-private-pool
-  serviceAccount: my-clouddeploy-sa@kwpark-deloitte-cicd-e968977c.iam.gserviceaccount.com
+  workerPool: projects/us-gcp-ame-its-842f4-npd-1/locations/us-east4/workerPools/my-private-pool
+  serviceAccount: cloud-deploy-ci-cd-pipeline@us-gcp-ame-its-842f4-npd-1.iam.gserviceaccount.com
