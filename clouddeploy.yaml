@@ -62,3 +62,4 @@ executionConfigs:
   - DEPLOY
   workerPool: projects/us-gcp-ame-its-842f4-npd-1/locations/us-east4/workerPools/my-private-pool
   serviceAccount: cloud-deploy-ci-cd-pipeline@us-gcp-ame-its-842f4-npd-1.iam.gserviceaccount.com
+  
