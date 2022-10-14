@@ -1,4 +1,3 @@
-# replace "project-id-here" in the three targets below with your actual project(s)
 apiVersion: deploy.cloud.google.com/v1
 kind: DeliveryPipeline
 metadata:
@@ -13,6 +12,7 @@ serialPipeline:
  - targetId: prod
    profiles:
    - prod
+
 ---
 
 apiVersion: deploy.cloud.google.com/v1
@@ -20,8 +20,15 @@ kind: Target
 metadata:
   name: test
 description: test cluster
-gke:
-  cluster: projects/project-id-here/locations/us-central1/clusters/testcluster
+anthosCluster:
+  membership: projects/kwpark-deloitte-gke-e968977c/locations/global/memberships/my-test-cluster
+executionConfigs:
+- usages:
+  - RENDER
+  - DEPLOY
+  workerPool: projects/kwpark-deloitte-cicd-e968977c/locations/us-central1/workerPools/my-private-pool
+  serviceAccount: my-clouddeploy-sa@kwpark-deloitte-cicd-e968977c.iam.gserviceaccount.com
+  
 ---
 
 apiVersion: deploy.cloud.google.com/v1
@@ -29,8 +36,16 @@ kind: Target
 metadata:
   name: staging
 description: staging cluster
-gke:
-  cluster: projects/project-id-here/locations/us-central1/clusters/stagingcluster
+anthosCluster:
+  membership: projects/kwpark-deloitte-gke-e968977c/locations/global/memberships/stage-cluster
+executionConfigs:
+- usages:
+  - RENDER
+  - DEPLOY
+  workerPool: projects/kwpark-deloitte-cicd-e968977c/locations/us-central1/workerPools/my-private-pool
+  serviceAccount: my-clouddeploy-sa@kwpark-deloitte-cicd-e968977c.iam.gserviceaccount.com
+
+
 ---
 
 apiVersion: deploy.cloud.google.com/v1
@@ -39,5 +54,11 @@ metadata:
   name: prod
 description: prod cluster
 requireApproval: true
-gke:
-  cluster: projects/project-id-here/locations/us-central1/clusters/prodcluster
+anthosCluster:
+  membership: projects/kwpark-deloitte-gke-e968977c/locations/global/memberships/prod-cluster
+executionConfigs:
+- usages:
+  - RENDER
+  - DEPLOY
+  workerPool: projects/kwpark-deloitte-cicd-e968977c/locations/us-central1/workerPools/my-private-pool
+  serviceAccount: my-clouddeploy-sa@kwpark-deloitte-cicd-e968977c.iam.gserviceaccount.com
