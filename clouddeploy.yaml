@@ -33,6 +33,7 @@ executionConfigs:
 
 apiVersion: deploy.cloud.google.com/v1
 kind: Target
+
 metadata:
   name: staging
 description: staging cluster
