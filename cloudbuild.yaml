@@ -27,3 +27,4 @@ images:
 options:
   requestedVerifyOption: VERIFIED
 logsBucket: gs://my-cicd-demo-logs-bucket-olive
+
