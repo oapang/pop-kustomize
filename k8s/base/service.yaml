@@ -1,12 +1,28 @@
+#apiVersion: v1
+#kind: Service
+#metadata:
+#  name: pop-stats
+#spec:
+#  ports:
+#  - port: 8080
+#    name: http
+#  type: LoadBalancer
+#  selector:
+ #   app: pop-stats
+ # externalTrafficPolicy: Local
+
 apiVersion: v1
 kind: Service
 metadata:
-  name: pop-stats
+  name: frontend-loadbalancer
+  annotations:
+    networking.gke.io/load-balancer-type: 'Internal'
 spec:
-  ports:
-  - port: 8080
-    name: http
   type: LoadBalancer
   selector:
-    app: pop-stats
-  externalTrafficPolicy: Local
+    app: frontend
+  ports:
+  - name: http
+    port: 80
+    targetPort: 8080
+    protocol: TCP
