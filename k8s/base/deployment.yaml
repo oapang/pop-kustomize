@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: pop-stats
-  namespace: advisory
   labels:
     app: pop-stats
 spec:
