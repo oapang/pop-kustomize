@@ -1,0 +1,12 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: pop-stats-ingress
+  annotations:
+    kubernetes.io/ingress.class: "gce-internal"
+spec:
+  defaultBackend:
+    service:
+      name: pop-stats
+      port:
+        number: 8080

@@ -2,13 +2,15 @@ apiVersion: v1
 kind: Service
 metadata:
   name: pop-stats
+  annotations:
+    cloud.google.com/neg: '{"ingress": true}'
 spec:
+  #externalTrafficPolicy: Local
   ports:
-  - port: 8080
-    name: http
-  type: LoadBalancer
+  - name: http
+    port: 8080
   selector:
     app: pop-stats
-  externalTrafficPolicy: Local
+  type: ClusterIP
 
 
