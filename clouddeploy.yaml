@@ -21,7 +21,7 @@ metadata:
   name: test
 description: test cluster
 anthosCluster:
-  membership: projects/us-gcp-ame-its-842f4-npd-1/locations/global/memberships/gke-us-east4-dev-cluster-01
+  membership: projects/us-gcp-ame-its-wsfzl-prd-1/locations/global/memberships/gke-us-east4-dev-cluster-01
 executionConfigs:
 - usages:
   - RENDER
@@ -38,7 +38,7 @@ metadata:
   name: staging
 description: staging cluster
 anthosCluster:
-  membership: projects/us-gcp-ame-its-842f4-npd-1/locations/global/memberships/gke-us-east4-dev-cluster-01
+  membership: projects/us-gcp-ame-its-wsfzl-prd-1/locations/global/memberships/gke-us-east4-dev-cluster-01
 executionConfigs:
 - usages:
   - RENDER
@@ -56,7 +56,7 @@ metadata:
 description: prod cluster
 requireApproval: true
 anthosCluster:
-  membership: projects/us-gcp-ame-its-842f4-npd-1/locations/global/memberships/gke-us-east4-dev-cluster-01
+  membership: projects/us-gcp-ame-its-wsfzl-prd-1/locations/global/memberships/gke-us-east4-dev-cluster-01
 executionConfigs:
 - usages:
   - RENDER
